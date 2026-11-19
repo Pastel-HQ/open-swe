@@ -96,10 +96,8 @@ def dashboard_thread_id(locator: str) -> str | None:
 
 def dashboard_plan_url(thread_id: str) -> str | None:
     """Build the dashboard plan-review URL for a given thread id."""
-    base_url = dashboard_base_url()
-    if not base_url or not thread_id:
-        return None
-    return f"{base_url}/agents/{quote(thread_id, safe='')}/plan"
+    thread_url = dashboard_thread_url(thread_id)
+    return f"{thread_url}/plan" if thread_url else None
 
 
 def dashboard_workflow_approval_url(thread_id: str, fingerprint: str) -> str | None:
